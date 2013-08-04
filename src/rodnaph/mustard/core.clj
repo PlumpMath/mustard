@@ -1,13 +1,19 @@
 
 (ns rodnaph.mustard.core
-  (:require [aleph.http :refer [start-http-server]]
+  (:require [cheshire.core :refer [parse-string]]
+            [aleph.http :refer [start-http-server]]
             [lamina.core :refer [receive permanent-channel read-channel filter* siphon]]))
 
 (def broadcast
   (permanent-channel))
 
+(defn- in?
+  [x xs]
+  (some #(= x %) xs))
+
 (defn- accept? [id message]
-  (= id message))
+  (let [data (parse-string message true)]
+    (in? id (:users data))))
 
 (defn- register [ch id]
   (let [accept (partial accept? id)
