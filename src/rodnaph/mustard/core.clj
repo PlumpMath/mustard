@@ -16,10 +16,9 @@
     (in? id (:users data))))
 
 (defn- register [ch id]
-  (let [accept (partial accept? id)
-        local (filter* accept broadcast)]
-    (siphon local ch)
-    (siphon ch local)))
+  (let [accept (partial accept? id)]
+    (siphon (filter* accept broadcast) ch)
+    (siphon ch broadcast)))
 
 (defn- start []
   (start-http-server
