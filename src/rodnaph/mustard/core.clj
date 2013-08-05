@@ -1,8 +1,12 @@
 
 (ns rodnaph.mustard.core
-  (:require [cheshire.core :refer [parse-string]]
+  (:require [confo.core :refer [confo]]
+            [cheshire.core :refer [parse-string]]
             [aleph.http :refer [start-http-server]]
             [lamina.core :refer [receive permanent-channel read-channel filter* siphon]]))
+
+(def config (confo :mustard
+                   :port 8080))
 
 (def broadcast
   (permanent-channel))
@@ -25,7 +29,8 @@
     (fn [ch _]
       (receive ch
         (partial register ch)))
-    {:port 8080 :websocket true}))
+    {:port (:port config)
+     :websocket true}))
 
 (defn -main []
   (start))

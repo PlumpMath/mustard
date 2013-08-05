@@ -7,7 +7,7 @@ parsed should be JSON, with the targetted users specified.
 
 ## Usage
 
-Clone the repo then run:
+Clone the repo and...
 
 ```
 lein run
@@ -37,4 +37,12 @@ ws.send(
 The above message will be sent to users _1_, _2_, and _3_.  The
 user will receive the entire string of JSON, including the other
 recipient IDs.
+
+## Configuration
+
+Mustard is configured using the following environment vars...
+
+```
+MUSTARD_PORT=8080
+```
 

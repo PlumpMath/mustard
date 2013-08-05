@@ -3,6 +3,7 @@
   :description "Event/messaging server"
   :dependencies [[org.clojure/clojure "1.5.1"]
                  [cheshire "5.2.0"]
-                 [aleph "0.3.0-rc2"]]
+                 [aleph "0.3.0-rc2"]
+                 [rodnaph/confo "0.7.0"]]
   :main rodnaph.mustard.core)
 
